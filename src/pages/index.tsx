@@ -1,4 +1,7 @@
 import { GetServerSideProps } from 'next';
+import { Features } from '../components/Features';
+import { Hero } from '../components/Hero';
+import { Pricing } from '../components/Pricing';
 import { usePageQuery, PageDocument } from '../generated/graphql';
 import { client, ssrCache } from '../lib/urql';
 
@@ -6,7 +9,13 @@ import { client, ssrCache } from '../lib/urql';
 export default function Home() {
   const [{ data }] = usePageQuery({ variables: { slug: 'home' } });
 
-  return <h1>{data?.page.title}</h1>;
+  return (
+    <>
+      <Hero title={data.page.title} subtitle={data.page.subtitle} />
+      <Features />
+      <Pricing />
+    </>
+  )
 }
 
 // Makes everything loads as server side, caching data
