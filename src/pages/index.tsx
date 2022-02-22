@@ -20,7 +20,7 @@ export default function Home() {
 
 // Makes everything loads as server side, caching data
 export const getServerSideProps: GetServerSideProps = async () => {
-  await client.query(PageDocument, { slug: 'home'}).toPromise()
+  await client.query(PageDocument, { slug: 'home' }).toPromise()
 
   return {
     props: {
